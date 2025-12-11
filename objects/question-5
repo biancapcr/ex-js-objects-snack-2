@@ -1,0 +1,46 @@
+const chef = {
+  name: "Chef Hyur",
+  age: 29,
+  makeBurger: (num = 1) => {
+    console.log(`Ecco ${num} hamburger per te!`);
+  },
+  restaurant: {
+    name: "Hyur's Burgers",
+    welcomeClient: () => {
+      console.log("Benvenuto!");
+    },
+    address: {
+      street: "Main Street",
+      number: 123,
+      showAddress: () => {
+        console.log("Main Street 123");
+      },
+    },
+    isOpen: true,
+  },
+};
+const newRestaurant = { ...hamburger.maker.restaurant };
+newRestaurant.name = "Hyur's II";
+newRestaurant.address = "Second Street, 12";
+
+const secondBurger = { ...hamburger };
+secondBurger.maker.restaurant = newRestaurant;
+secondBurger.maker.name = "Chef Hyur";
+
+console.log(hamburger.maker.name); // "Anonymous Chef"
+console.log(secondBurger.maker.name); // "Chef Hyur"
+console.log(hamburger.maker.restaurant.name); // "Hyur's Burgers"
+console.log(secondBurger.maker.restaurant.name); // "Hyur's II"
+
+// newRestaurant è una shallow copy del ristorante originale, quindi oggetto indipendente
+// secondBurger è una shallow copy di hamburger, quindi oggetto indipendente al primo livello
+// secondBurger.maker.restaurant viene sostituito con newRestaurant (nuovo oggetto)
+// hamburger e secondBurger non condividono più lo stesso maker.restaurant
+//
+// oggetti in memoria:
+// 1 hamburger
+// 1 hamburger.maker
+// 1 hamburger.maker.restaurant
+// 1 newRestaurant
+// 1 secondBurger
+// totale: 5 oggetti
