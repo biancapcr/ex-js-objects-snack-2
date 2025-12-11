@@ -1,0 +1,25 @@
+const chef = {
+  name: "Chef Hyur",
+  age: 29,
+  makeBurger: (num = 1) => {
+    console.log(`Ecco ${num} hamburger per te!`);
+  },
+};
+
+const restaurant = {
+  name: "Hyur's Burgers",
+  address: {
+    street: "Main Street",
+    number: 123,
+  },
+  openingDate: new Date(2025, 3, 11),
+  isOpen: false,
+};
+
+// il metodo migliore per clonare chef è lo spread operator:
+// const newChef = { ...chef };
+// shallow copy, perché non ha oggetti annidati e contiene una funzione
+
+// il metodo migliore per clonare restaurant è structuredClone():
+// const newRestaurant = structuredClone(restaurant);
+// deep copy, perché contiene un oggetto annidato e una data
