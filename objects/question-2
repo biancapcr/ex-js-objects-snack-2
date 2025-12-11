@@ -1,0 +1,15 @@
+const hamburger = {
+  name: "Cheese Burger",
+  weight: 250,
+  ingredients: ["Cheese", "Meat", "Bread", "Tomato"],
+};
+
+const secondBurger = { ...hamburger };
+secondBurger.ingredients[0] = "Salad";
+
+console.log(hamburger.ingredients[0]); // "Salad"
+console.log(secondBurger.ingredients[0]); // "Salad"
+
+// lo spread operator crea una shallow copy
+// l’array "ingredients" è un reference type, quindi condiviso
+// sono stati creati 2 oggetti, ma l’array interno è lo stesso in memoria
