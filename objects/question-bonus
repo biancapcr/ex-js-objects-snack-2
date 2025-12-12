@@ -1,0 +1,33 @@
+// funzione di deep copy ricorsiva
+function deepCopy(obj) {
+  // se non è un oggetto (es. numero, stringa, null, funzione), restituisce il valore com'è
+  if (obj === null || typeof obj !== "object") {
+    return obj;
+  }
+
+  // se è un array, crea un nuovo array copiando ogni elemento ricorsivamente
+  if (Array.isArray(obj)) {
+    return obj.map((el) => deepCopy(el));
+  }
+
+  // se è un oggetto, copia tutte le sue proprietà
+  const copia = {};
+  for (let key in obj) {
+    // ricorsione per copiare ogni valore interno
+    copia[key] = deepCopy(obj[key]);
+  }
+  return copia;
+}
+
+// test con l’oggetto chef
+const newChef = deepCopy(chef);
+
+// prove
+newChef.name = "Chef Bianca";
+newChef.restaurant.address.street = "Second Street";
+newChef.restaurant.welcomeClient = () => console.log("Ciao cliente!");
+
+console.log(chef.name); // "Chef Hyur"
+console.log(chef.restaurant.address.street); // "Main Street"
+newChef.restaurant.welcomeClient(); // "Ciao cliente!"
+chef.restaurant.welcomeClient(); // "Benvenuto!"
